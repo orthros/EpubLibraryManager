@@ -1,0 +1,45 @@
+@using VersFx.Formats.Text.Epub;
+@model List<EpubBookRef>
+@{
+    ViewData["Title"] = "Library";        
+}
+
+@for(int i = 0; i < Math.Ceiling((double)(Model.Count/3)); i++)
+ {
+    <div class="row">
+        @for(int j = 0; j < 3; j++)
+        {
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h3 class="card-title">@Model[i*3 + j].Title</h3>
+                        <p class="card-text">@Model[i*3 +j].Author</p>
+                    </div>
+                </div>
+            </div>
+            
+        }        
+    </div>
+ }
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Special title treatment</h3>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Special title treatment</h3>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</div>
+               
