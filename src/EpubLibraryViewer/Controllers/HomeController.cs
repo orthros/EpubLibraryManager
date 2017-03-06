@@ -8,6 +8,13 @@ namespace EpubLibraryViewer.Controllers
 {
     public class HomeController : Controller
     {
+        public IAppInfoSettings AppInfo { get; private set; }
+
+        public HomeController(IAppInfoSettings appInfo)
+        {
+            this.AppInfo = appInfo ?? throw new ArgumentNullException(nameof(appInfo));
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -15,7 +22,7 @@ namespace EpubLibraryViewer.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = AppInfo.AboutMessage;
 
             return View();
         }
@@ -23,6 +30,7 @@ namespace EpubLibraryViewer.Controllers
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
+            ViewData["ContactInfo"] = AppInfo.ContactEmail;
 
             return View();
         }

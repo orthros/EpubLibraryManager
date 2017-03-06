@@ -33,7 +33,13 @@ namespace EpubLibraryViewer
             var libraryLocation = Configuration.GetSection("Library").Value;
             var librarySettings = new LibrarySettings(libraryLocation);
 
+            var contactEmail = Configuration.GetSection("ContactEmail")?.Value;
+            var aboutMessage = Configuration.GetSection("About")?.Value;
+
+            var appInfoSettings = new AppInfoSettings(aboutMessage, contactEmail);
+
             services.AddSingleton(typeof(ILibrarySettings), librarySettings);
+            services.AddSingleton(typeof(IAppInfoSettings), appInfoSettings);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

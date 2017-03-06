@@ -2,16 +2,16 @@
     ViewData["Title"] = "Contact";
 }
 <h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
 
+
+@if(!string.IsNullOrWhiteSpace(ViewData["ContactInfo"]?.ToString()))
+{
+    string email = ViewData["ContactInfo"].ToString();
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
+    <strong>You can contact this Library's Owner at:</strong> <a href="mailto:@email"> @email </a><br />    
 </address>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+} else
+{ 
+    <h1>The owner of this Library would not like to be contacted</h1>
+}
