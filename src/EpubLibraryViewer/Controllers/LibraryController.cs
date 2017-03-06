@@ -30,8 +30,19 @@ namespace EpubLibraryViewer.Controllers
             }
                              
             var books = concurrentBooks.ToList();
+            books.Sort((a, b) =>
+            {
+                return a.Title.CompareTo(b.Title);
+            });
 
             return View(books);
+        }
+
+        public async Task<FileResult> Download(string target)
+        {
+            FileInfo fi = new FileInfo(target);
+            var bytes = System.IO.File.ReadAllBytes(fi.FullName);
+            return File(bytes, "application/x-msdownload", fi.Name);            
         }
     }
 }
